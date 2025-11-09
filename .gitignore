@@ -1,0 +1,72 @@
+# ===== PYTHON / BACKEND =====
+venv/
+new_venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+instance/
+.env
+.env.*
+
+# Caches and logs
+*.log
+*.tmp
+*.cache/
+__pycache__/
+pytest_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+
+# TensorFlow / ML artifacts
+*.h5
+*.hdf5
+*.ckpt
+*.pb
+*.tflite
+*.keras
+checkpoints/
+saved_models/
+logs/
+runs/
+
+# ===== NODE / FRONTEND =====
+node_modules/
+build/
+dist/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# React / Next / Vite specific
+.cache/
+.next/
+out/
+.DS_Store
+
+# ===== DOCKER / DEPLOYMENT =====
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
+.dockerignore
+
+# ===== IDE / OS FILES =====
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===== MISC =====
+*.bak
+*.old
+*.orig
+*.rej
