@@ -1,4 +1,13 @@
-# ☁️ AI-Driven Cloud Resource Optimizer
+# AI-Driven Real-Time Cloud Resource Optimizer
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+</p>
 
 A sophisticated cloud resource optimization platform that uses advanced LSTM neural networks to predict resource utilization and recommend optimal scaling actions, helping organizations maintain performance while minimizing costs.
 
@@ -237,12 +246,12 @@ cloud-resource-optimizer/
 - Delete `backend/models/` directory to retrain model
 - Check TensorFlow installation: `python -c "import tensorflow as tf; print(tf.__version__)"`
 
-## 📞 Support
+## 👨‍💻 Author
 
-For issues and questions, please open an issue on the repository.
+**Aayush Sharma**
 
----
+*B.Tech Computer Science & Engineering (AI & ML)*
 
-**Built with ❤️ using FastAPI, React, and TensorFlow**
+*Manipal University Jaipur*
 
 
