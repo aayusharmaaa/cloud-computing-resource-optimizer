@@ -21,6 +21,5 @@ if not exist "models" mkdir models
 REM Start server
 echo Starting FastAPI server on http://localhost:8000
 echo API documentation available at http://localhost:8000/docs
-uvicorn main:app --reload --port 8000
-
+python -m uvicorn main:app --reload --port 8000
 

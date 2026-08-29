@@ -19,6 +19,7 @@ function Login() {
     
     setTimeout(() => {
       if (email === 'admin@enterprise.com' && password === 'admin123') {
+        setIsLoading(false);
         navigate('/cloud-setup');
       } else {
         setError('Invalid credentials. Please use demo account.');

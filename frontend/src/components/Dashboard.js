@@ -157,7 +157,7 @@ function Dashboard() {
           <MetricCard title="Compute Load" type="cpu" current={dashboardStats.current_cpu} predicted={dashboardStats.predicted_cpu} unit="%" />
           <MetricCard title="Memory Usage" type="memory" current={dashboardStats.current_memory} predicted={dashboardStats.predicted_memory} unit="%" />
           <CostCard hourly={dashboardStats.current_cost_per_hour} monthly={dashboardStats.monthly_cost} savings={dashboardStats.potential_savings} savingsPercent={dashboardStats.savings_percentage} />
-          <ActionCard action={dashboardStats.recommended_action} urgency={prediction?.action_details?.urgency || 'medium'} reason={prediction?.action_details?.reason || 'Optimal routing in effect.'} confidence={0.99} />
+          <ActionCard action={dashboardStats.recommended_action} urgency={prediction?.action_details?.urgency || 'medium'} reason={prediction?.action_details?.reason || 'Optimal routing in effect.'} confidence={prediction?.confidence ?? 0.6} />
         </div>
       )}
 

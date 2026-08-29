@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     
     # Scaling Thresholds
     scale_up_threshold: float = 80.0
-    scale_down_threshold: float = 50.0
+    scale_down_threshold: float = 30.0
     
     model_config = {
         "protected_namespaces": ("settings_",),

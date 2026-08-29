@@ -9,8 +9,8 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-      - ./models:/app/models
-      - ./data:/app/data
+      - ./backend/models:/app/models
+      - ./backend/data:/app/data
     environment:
       - DATABASE_URL=sqlite:///./data/cloud_optimizer.db
     restart: unless-stopped

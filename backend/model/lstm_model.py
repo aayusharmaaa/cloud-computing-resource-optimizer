@@ -184,35 +184,41 @@ class LSTMModel:
     # ----------------------------------------------------------------
     #  TRAINING
     # ----------------------------------------------------------------
-    def _train(self):
-        """Train the model with real Alibaba data (or synthetic fallback)."""
+    def train(self):
+        """Train a new LSTM model from data and save it to disk."""
         if not TENSORFLOW_AVAILABLE:
-            return None
-        
+            print("[ERROR] TensorFlow is not available. Install dependencies with:")
+            print("          pip install -r requirements.txt")
+            return False
+
         print("=" * 60)
         print("  LSTM MODEL TRAINING")
         print("=" * 60)
-        
+
         X, y = self._load_real_data()
-        
+
         if len(X) == 0:
             print("[ERROR] No training data available. Skipping training.")
-            return None
-        
+            return False
+
+        self.model = self._build_model((self.sequence_length, len(FEATURE_COLS)))
+        if self.model is None:
+            print("[ERROR] Failed to build LSTM model.")
+            return False
+
         early_stopping = EarlyStopping(
             monitor='val_loss',
             patience=10,
             restore_best_weights=True
         )
-        
-        # Split data 80/20
+
         split_idx = int(0.8 * len(X))
         X_train, X_val = X[:split_idx], X[split_idx:]
         y_train, y_val = y[:split_idx], y[split_idx:]
-        
+
         print(f"[INFO] Training set: {len(X_train):,} | Validation set: {len(X_val):,}")
-        
-        history = self.model.fit(
+
+        self.model.fit(
             X_train, y_train,
             validation_data=(X_val, y_val),
             epochs=50,
@@ -220,13 +226,11 @@ class LSTMModel:
             verbose=1,
             callbacks=[early_stopping]
         )
-        
-        # Save model
+
         self.model.save(self.model_path)
         print(f"[INFO] Model saved to {self.model_path}")
         print("=" * 60)
-        
-        return history
+        return True
     
     # ----------------------------------------------------------------
     #  LOAD OR CREATE
