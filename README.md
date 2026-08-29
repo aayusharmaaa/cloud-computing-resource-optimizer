@@ -14,9 +14,6 @@
   Predict workload demand in real time, automate scaling decisions, and reduce infrastructure spend by up to 20%.
 </p>
 
-<p align="center">
-  <em>Interactive product demo — clone locally and explore the full platform in under 5 minutes.</em>
-</p>
 
 <p align="center">
   <a href="#-quick-start">Quick Start</a> •
