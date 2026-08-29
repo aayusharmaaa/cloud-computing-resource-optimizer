@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     # API Settings
     api_title: str = "Cloud Resource Optimizer API"
     api_version: str = "1.0.0"
-    api_description: str = "AI-Driven Cloud Computing Resource Optimization API"
+    api_description: str = "B2B cloud cost optimization API — real-time ML forecasting, auto-scaling recommendations, and FinOps analytics for enterprises and SMBs."
     
     # CORS Settings
     cors_origins: list = ["http://localhost:3000", "http://localhost:3001"]

@@ -54,7 +54,7 @@ function Login() {
             <Infinity className="infinity-layer-main" size={22} />
           </div>
           <h1 className="gradient-text">Cloud Resource Optimizer</h1>
-          <p className="subtitle">Infrastructure Intelligence</p>
+          <p className="subtitle">Reduce Cloud Spend. Scale Smarter.</p>
         </div>
 
         <div className="auth-card">
