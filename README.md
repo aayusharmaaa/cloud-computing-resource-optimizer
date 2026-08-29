@@ -11,7 +11,7 @@
 
 <p align="center">
   <strong>AI-powered cloud cost optimization for enterprises and SMBs.</strong><br/>
-  Predict workload demand in real time, automate scaling decisions, and reduce infrastructure spend by up to 20%.
+  Predict workload demand in real time, automate scaling decisions, and reduce cloud & infra costs by up to 20%.
 </p>
 
 
