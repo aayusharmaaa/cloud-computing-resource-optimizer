@@ -1,189 +1,371 @@
 # AI-Driven Real-Time Cloud Resource Optimizer
 
-<p align="left">
+<p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
   <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow" />
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
 </p>
 
-A sophisticated cloud resource optimization platform that uses LSTM neural networks trained on **industry-grade production cluster data** to predict resource utilization and recommend optimal scaling actions — helping organizations maintain performance while minimizing costs.
+<p align="center">
+  <strong>Predict cloud utilization, optimize costs, and recommend scaling actions — powered by LSTM neural networks.</strong>
+</p>
 
-![Dashboard](dashboard.png)
+<p align="center">
+  Clone → run two scripts → explore the full dashboard locally in under 5 minutes.
+</p>
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-screenshots">Screenshots</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-api-reference">API</a> •
+  <a href="#-for-reviewers">For Reviewers</a>
+</p>
+
+---
+
+## Overview
+
+**Cloud Resource Optimizer** is a full-stack portfolio project that simulates an enterprise cloud operations platform. It combines:
+
+- **LSTM time-series forecasting** for CPU and memory utilization
+- **Real-time telemetry** over WebSockets
+- **Cost modeling** with hourly, monthly, and annual projections
+- **AI scaling recommendations** with confidence scoring
+- **Human-in-the-loop controls** for manual override and safety limits
+
+The app is designed to be **cloned and run locally** — no cloud account, API keys, or deployment required. Demo credentials and simulated integrations let reviewers explore every screen immediately.
+
+<p align="center">
+  <img src="docs/screenshots/04-dashboard.png" alt="Operations Dashboard" width="900" />
+  <br />
+  <em>Operations Dashboard — live metrics, predictions, cost analysis, and HITL controls</em>
+</p>
+
+---
+
+## Table of Contents
+
+- [Key Highlights](#-key-highlights)
+- [Screenshots](#-screenshots)
+- [Demo Walkthrough](#-demo-walkthrough)
+- [Tech Stack](#-tech-stack)
+- [Architecture](#-architecture)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Train the LSTM Model](#-train-the-lstm-model-optional)
+- [API Reference](#-api-reference)
+- [LSTM Model](#-lstm-model)
+- [Configuration](#-configuration)
+- [Project Structure](#-project-structure)
+- [For Reviewers](#-for-reviewers)
+- [Troubleshooting](#-troubleshooting)
+- [Roadmap](#-roadmap)
+- [Author](#-author)
+
+---
+
+## Key Highlights
+
+| Area | What it does |
+|------|----------------|
+| **AI Engine** | Multivariate LSTM (CPU, memory, network, disk) with automatic fallback predictor |
+| **Real-Time** | WebSocket stream updates metrics every 2 seconds |
+| **Cost Intelligence** | Hourly → monthly → annual cost projections and savings analysis |
+| **Action Engine** | Scale up / scale down / maintain recommendations with urgency levels |
+| **Enterprise UI** | 6-page React app with dark/light theme, charts, and SSH-style terminal |
+| **Local-First** | SQLite database, synthetic telemetry, one-command startup scripts |
+
+---
+
+## Screenshots
+
+### Authentication & Onboarding
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/01-login.png" alt="Login Portal" />
+      <p align="center"><strong>Login Portal</strong><br/>Demo credentials with one-click fill</p>
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/02-cloud-setup.png" alt="Cloud Setup" />
+      <p align="center"><strong>Cloud Integration</strong><br/>AWS / GCP / Azure connection flow</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/03-llm-setup.png" alt="LLM Setup" />
+      <p align="center"><strong>LLM Configuration</strong><br/>OpenAI, Anthropic, or Gemini setup</p>
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/08-api-docs.png" alt="API Documentation" />
+      <p align="center"><strong>FastAPI Docs</strong><br/>Interactive Swagger UI at /docs</p>
+    </td>
+  </tr>
+</table>
+
+### Operations Dashboard
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/04-dashboard.png" alt="Dashboard Light" />
+      <p align="center"><strong>Dashboard (Light Theme)</strong><br/>Metrics, charts, terminal, node health</p>
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/07-dashboard-dark.png" alt="Dashboard Dark" />
+      <p align="center"><strong>Dashboard (Dark Theme)</strong><br/>Full dark mode across all components</p>
+    </td>
+  </tr>
+</table>
+
+### Security & Settings
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/05-security.png" alt="Security Posture" />
+      <p align="center"><strong>Security Posture</strong><br/>IAM sync, encryption, SSO status</p>
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/06-settings.png" alt="Settings" />
+      <p align="center"><strong>Global Settings</strong><br/>Alerts, logging, data retention</p>
+    </td>
+  </tr>
+</table>
+
+> To regenerate screenshots after UI changes: `node scripts/capture-screenshots.mjs` (requires the app running on port 3001).
+
+---
+
+## Demo Walkthrough
+
+1. **Start the app** — run `start-backend.bat` and `start-frontend.bat` (or see [Quick Start](#-quick-start))
+2. **Login** — use `admin@enterprise.com` / `admin123`, or click **Load Demo Configuration**
+3. **Cloud Setup** — click **Load Demo Configuration**, then connect (simulated validation)
+4. **LLM Setup** — same demo fill flow, then proceed to the dashboard
+5. **Dashboard** — watch live metrics stream, review AI recommendations, toggle dark mode
+6. **Explore** — visit Security and Settings from the navbar; try HITL manual overrides
+
+---
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **Backend** | Python 3.11, FastAPI, Uvicorn, SQLAlchemy, Pydantic |
+| **ML** | TensorFlow/Keras LSTM, NumPy, Pandas |
+| **Database** | SQLite (PostgreSQL-ready schema) |
+| **Real-Time** | WebSockets (2s interval push) |
+| **Frontend** | React 18, React Router v7, Axios, Recharts |
+| **UI** | Lucide icons, CSS custom properties, ThemeContext |
+| **DevOps** | Docker, docker-compose, Windows/Linux startup scripts |
+
+---
+
+## Architecture
+
+```mermaid
+flowchart TB
+    subgraph Frontend["React Frontend :3000"]
+        UI[Dashboard / Login / Settings]
+        WS_Client[WebSocket Client]
+        REST[Axios REST Client]
+    end
+
+    subgraph Backend["FastAPI Backend :8000"]
+        API[REST Routers]
+        WSS[WebSocket /ws]
+        PS[Prediction Service]
+        AE[Action Engine]
+        CC[Cost Calculator]
+        LSTM[LSTM Model + Fallback]
+        SIM[Data Simulator]
+        DB[(SQLite)]
+    end
+
+    UI --> REST
+    UI --> WS_Client
+    REST --> API
+    WS_Client --> WSS
+    API --> PS
+    PS --> LSTM
+    PS --> AE
+    PS --> CC
+    PS --> DB
+    WSS --> SIM
+    WSS --> CC
+    SIM --> WSS
+```
+
+### Data Flow
+
+1. **Simulator** generates realistic CPU, memory, and network telemetry
+2. **Metrics API** stores readings in SQLite and serves history
+3. **Prediction Service** builds 10-step sequences and runs LSTM inference (or fallback)
+4. **Action Engine** compares predicted utilization against thresholds → scale up / down / maintain
+5. **Cost Calculator** projects hourly, monthly, and savings impact
+6. **WebSocket** pushes live metrics to the dashboard terminal and charts every 2 seconds
+
+---
 
 ## Features
 
 ### AI-Powered Predictions
-- **LSTM Neural Networks** trained on industry-grade production cluster data (500K+ rows)
-- **Multivariate Analysis** — CPU, Memory, Network, and Disk I/O as input features
-- **Confidence Scoring** with prediction reliability indicators
-- **Fallback Predictor** — moving-average when LSTM model is not yet trained
+- LSTM neural networks trained on industry-grade cluster telemetry (500K+ rows supported)
+- Multivariate input: CPU, memory, network I/O, disk I/O
+- Confidence scoring based on input variance
+- Automatic fallback to moving-average predictor when no model is trained
 
 ### Real-Time Monitoring
-- **Live Metrics Stream** via WebSocket (2-second intervals)
-- **Interactive Charts** combining historical + real-time data with Recharts
-- **Terminal View** — SSH-style live telemetry log with color-coded alerts
-- **Node Health Grid** — per-node status, latency, and IP monitoring
+- WebSocket live stream (2-second intervals)
+- Recharts time-series with historical + real-time overlay
+- SSH-style terminal log with color-coded CPU/memory alerts
+- Per-node health grid with latency and status indicators
 
 ### Cost Optimization
-- **Real-Time Cost Calculator** — hourly, monthly, and annual projections
-- **Savings Analysis** with percentage indicators and potential savings
-- **Rightsizing Recommendations** based on predicted utilization
+- Real-time hourly cost calculation
+- Monthly and annual projections
+- Rightsizing recommendations with savings percentage
 
-### Human-in-the-Loop (HITL) Controls
-- **AI Auto-Scaling Toggle** — enable/disable AI-driven decisions
-- **Hard Node Limit** — enforced max instance constraint as a billing fail-safe
-- **Manual Overrides** — force provision (upscale) or deprovision (downscale)
-- **Anomaly Reporting** — submit error logs and halt operations
+### Human-in-the-Loop (HITL)
+- AI auto-scaling toggle
+- Hard node limit slider (billing fail-safe)
+- Manual provision / deprovision overrides
+- Anomaly report and halt control
 
 ### Multi-Page Application
-- **Login** — authentication portal with demo credentials
-- **Cloud Setup** — connect AWS, GCP, or Azure with access keys
-- **LLM Setup** — configure OpenAI, Anthropic, or Gemini integration
-- **Dashboard** — main operations center with all monitoring and controls
-- **Security** — IAM sync, encryption status, SSO integration posture
-- **Settings** — email alerts, verbose logging, data retention preferences
+| Page | Route | Purpose |
+|------|-------|---------|
+| Login | `/login` | Authentication portal |
+| Cloud Setup | `/cloud-setup` | Provider connection wizard |
+| LLM Setup | `/llm-setup` | AI provider configuration |
+| Dashboard | `/dashboard` | Main operations center |
+| Security | `/security` | IAM and encryption posture |
+| Settings | `/settings` | Alerts and retention prefs |
 
-### Dark/Light Theme
-- **Unified Theme System** via React Context — one toggle, consistent everywhere
-- **Persistent Preference** saved to localStorage across sessions
-- **Full Coverage** — every page, navbar, cards, charts, and terminal adapt
+### Dark / Light Theme
+- Unified `ThemeContext` — one toggle, consistent everywhere
+- Persisted in `localStorage` across sessions
 
-## Architecture
-
-### Backend
-- **FastAPI** — modern async Python web framework
-- **TensorFlow/Keras** — LSTM model for time-series forecasting
-- **SQLAlchemy** — ORM with SQLite (PostgreSQL-ready)
-- **WebSockets** — real-time bidirectional communication
-- **Pydantic** — request/response validation
-
-### Frontend
-- **React 18** with React Router v7
-- **Recharts** — interactive chart visualizations
-- **Lucide React** — consistent icon system
-- **Axios** — HTTP client for API communication
-- **ThemeContext** — centralized dark/light mode management
+---
 
 ## Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- Node.js 14+
-- npm or yarn
+- **Python 3.11+**
+- **Node.js 18+**
+- npm
 
-### Backend Setup
+### Option A — Startup Scripts (Recommended)
 
+**Windows:**
+```bash
+start-backend.bat    # Terminal 1 → http://localhost:8000
+start-frontend.bat   # Terminal 2 → http://localhost:3000
+```
+
+**Linux / Mac:**
+```bash
+./start-backend.sh
+./start-frontend.sh
+```
+
+### Option B — Manual Setup
+
+**Backend:**
 ```bash
 cd backend
-
-# Create virtual environment (recommended)
 python -m venv venv
 source venv/bin/activate        # Linux/Mac
 venv\Scripts\activate           # Windows
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Start the server
 python -m uvicorn main:app --reload --port 8000
 ```
 
-The API will be available at `http://localhost:8000`
-API documentation: `http://localhost:8000/docs`
-
-### Frontend Setup
-
+**Frontend:**
 ```bash
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm start
 ```
 
-The frontend will be available at `http://localhost:3000`
+### Demo Credentials
 
-### Train the LSTM Model (Optional)
+| Field | Value |
+|-------|-------|
+| Email | `admin@enterprise.com` |
+| Password | `admin123` |
 
-The server starts with a fallback predictor by default. To train the full LSTM model:
-
-1. Place your production `machine_usage.csv` data in `backend/data/` (see `backend/data/README.md` for the expected schema)
-2. Run:
-
-```bash
-cd backend
-python train_model.py
-```
-
-Training ingests up to 500K rows across 200 machines, runs 50 epochs with early stopping, and saves the model for automatic loading on subsequent server starts.
-
-### Windows Quick Start
-
-```bash
-start-backend.bat    # Terminal 1
-start-frontend.bat   # Terminal 2
-```
-
-### Docker
+### Docker (Optional)
 
 ```bash
 docker-compose up
 ```
 
-## Demo Credentials
+---
 
-| Field    | Value                  |
-|----------|------------------------|
-| Email    | `admin@enterprise.com` |
-| Password | `admin123`             |
+## Train the LSTM Model (Optional)
 
-Use the **Load Demo Configuration** button on the Cloud Setup and LLM Setup pages to skip entering API keys.
+The server starts instantly with a **fallback predictor**. To train the full LSTM:
 
-## API Endpoints
+1. *(Optional)* Place `machine_usage.csv` in `backend/data/` — see [backend/data/README.md](backend/data/README.md)
+2. Run training:
 
-### Metrics
-- `GET /api/metrics/current` — current real-time metrics
-- `GET /api/metrics/history` — historical metrics with pagination
-- `GET /api/metrics/predictions` — prediction history
+```bash
+cd backend
+venv\Scripts\activate          # Windows
+python train_model.py
+```
 
-### Predictions
-- `GET /api/predict/` — current prediction with CPU/memory history
-- `GET /api/predict/action` — detailed action recommendation
+Training uses up to 500K rows across 200 machines, 50 epochs with early stopping, and saves to `backend/models/lstm_model.h5`. Without the dataset, synthetic data is used automatically.
 
-### Dashboard
-- `GET /api/dashboard/stats` — aggregated dashboard statistics
+---
 
-### WebSocket
-- `WS /ws` — real-time metrics stream (updates every 2 seconds)
+## API Reference
 
-### Health
-- `GET /health` — API health status
-- `GET /` — API info and available endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/` | API info and available routes |
+| `GET` | `/health` | Health check |
+| `GET` | `/api/metrics/current` | Current real-time metrics |
+| `GET` | `/api/metrics/history` | Historical metrics (`?limit=100`) |
+| `GET` | `/api/metrics/predictions` | Prediction history |
+| `GET` | `/api/predict/` | Current prediction + recommendation |
+| `GET` | `/api/predict/action` | Detailed action (`?current_instances=3`) |
+| `GET` | `/api/dashboard/stats` | Aggregated dashboard statistics |
+| `WS` | `/ws` | Real-time metrics stream (every 2s) |
 
-## LSTM Model Details
+Interactive docs: **http://localhost:8000/docs**
+
+---
+
+## LSTM Model
 
 ### Architecture
-- **Input**: 10 timesteps x 4 features (CPU, Memory, Network, Disk I/O)
-- **Layer 1**: LSTM 64 units, ReLU, return sequences + 20% Dropout
-- **Layer 2**: LSTM 32 units, ReLU + 20% Dropout
-- **Layer 3**: Dense 16 units, ReLU
-- **Output**: Dense 1 unit (predicted CPU utilization)
-- **Optimizer**: Adam | **Loss**: MSE | **Metric**: MAE
 
-### Training Data
-- **Source**: Industry-grade production cluster telemetry (`machine_usage.csv`)
-- **Size**: Up to 500,000 rows, sampled across 200 machines
-- **Features**: CPU utilization, memory utilization, network I/O, disk I/O
-- **Split**: 80% training / 20% validation
-- **Early Stopping**: patience=10 on validation loss
+| Component | Detail |
+|-----------|--------|
+| Input | 10 timesteps × 4 features (CPU, Memory, Network, Disk I/O) |
+| Layer 1 | LSTM 64 units, ReLU, return sequences + 20% Dropout |
+| Layer 2 | LSTM 32 units, ReLU + 20% Dropout |
+| Layer 3 | Dense 16 units, ReLU |
+| Output | Dense 1 unit (predicted CPU utilization) |
+| Optimizer | Adam · Loss: MSE · Metric: MAE |
+
+### Training
+- **Data**: Alibaba Cluster Trace 2018 (`machine_usage.csv`) or synthetic fallback
+- **Split**: 80% train / 20% validation
+- **Early stopping**: patience = 10 on validation loss
 
 ### Fallback Mode
-When no trained model is available, predictions use a simple moving-average with trend extrapolation — the server starts instantly without requiring TensorFlow model loading.
+When TensorFlow is unavailable or no `.h5` model exists, predictions use moving-average with trend extrapolation — the API still works immediately.
+
+---
 
 ## Configuration
 
@@ -191,116 +373,99 @@ Edit `backend/config.py` or set environment variables:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `scale_up_threshold` | 80 | CPU % to trigger scale-up |
-| `scale_down_threshold` | 30 | CPU % to trigger scale-down |
-| `cost_per_cpu_hour` | 0.05 | $/hour per CPU unit |
-| `cost_per_memory_hour` | 0.01 | $/hour per memory unit |
-| `cost_per_instance_hour` | 0.10 | Base $/hour per instance |
-| `sequence_length` | 10 | LSTM input timesteps |
-| `cors_origins` | `["*"]` | Allowed CORS origins |
+| `scale_up_threshold` | `80.0` | Utilization % to trigger scale-up |
+| `scale_down_threshold` | `30.0` | Utilization % to trigger scale-down |
+| `instance_cost_per_hour` | `0.10` | Base $/hour per instance |
+| `cost_per_cpu_percent` | `0.001` | $/hour per CPU utilization point |
+| `sequence_length` | `10` | LSTM input timesteps |
+| `cors_origins` | `localhost:3000,3001` | Allowed CORS origins |
+
+---
 
 ## Project Structure
 
 ```
 cloud-resource-optimizer/
 ├── backend/
-│   ├── main.py                  # FastAPI app, WebSocket, lifespan
-│   ├── config.py                # Pydantic settings (env-configurable)
-│   ├── database.py              # SQLAlchemy models and session
-│   ├── schemas.py               # Pydantic response schemas
-│   ├── train_model.py           # Standalone LSTM training script
-│   ├── requirements.txt
-│   ├── model/
-│   │   └── lstm_model.py        # LSTM model (train, predict, fallback)
-│   ├── routers/
-│   │   ├── metrics.py           # /api/metrics endpoints
-│   │   ├── predictions.py       # /api/predict endpoints
-│   │   └── dashboard.py         # /api/dashboard endpoints
+│   ├── main.py                     # FastAPI app + WebSocket
+│   ├── config.py                   # Settings (env-configurable)
+│   ├── database.py                 # SQLAlchemy models
+│   ├── schemas.py                  # Pydantic schemas
+│   ├── train_model.py              # LSTM training script
+│   ├── model/lstm_model.py         # LSTM + fallback predictor
+│   ├── routers/                    # metrics, predictions, dashboard
 │   ├── services/
-│   │   ├── action_engine.py     # Scaling recommendation engine
-│   │   └── cost_calculator.py   # Cost projection logic
-│   ├── utils/
-│   │   └── simulate_data.py     # Synthetic metrics generator
-│   └── data/
-│       ├── README.md            # Data schema and setup instructions
-│       └── machine_usage.csv    # (gitignored) Production cluster data
+│   │   ├── prediction_service.py   # Shared prediction logic
+│   │   ├── action_engine.py        # Scaling recommendations
+│   │   └── cost_calculator.py      # Cost projections
+│   └── utils/simulate_data.py      # Synthetic telemetry
 ├── frontend/
-│   ├── package.json
-│   ├── src/
-│   │   ├── App.js               # Router and ThemeProvider setup
-│   │   ├── App.css              # Global styles and body theming
-│   │   ├── ThemeContext.js       # Shared dark/light mode context
-│   │   └── components/
-│   │       ├── Login.js         # Auth portal with demo fill
-│   │       ├── CloudSetup.js    # Cloud provider configuration
-│   │       ├── LlmSetup.js     # LLM provider configuration
-│   │       ├── Dashboard.js     # Main operations dashboard
-│   │       ├── Security.js      # Security posture display
-│   │       ├── Settings.js      # App preferences
-│   │       ├── Navbar.js        # Global navigation + theme toggle
-│   │       ├── Chart.js         # Recharts time-series chart
-│   │       ├── MetricCard.js    # CPU/Memory metric display
-│   │       ├── ActionCard.js    # AI recommendation card
-│   │       ├── CostCard.js      # Cost analysis card
-│   │       ├── Auth.css         # Login/setup page styles
-│   │       ├── Dashboard.css    # Dashboard and card styles
-│   │       └── Navbar.css       # Navigation bar styles
-├── Dockerfile                   # Backend Docker image
-├── docker-compose.yml           # Full-stack Docker setup
-├── start-backend.bat            # Windows backend launcher
-├── start-frontend.bat           # Windows frontend launcher
-├── start-backend.sh             # Linux/Mac backend launcher
-├── start-frontend.sh            # Linux/Mac frontend launcher
-├── RUN_INSTRUCTIONS.md          # Detailed run guide
-├── TENSORFLOW_FIX.md            # TensorFlow troubleshooting
+│   └── src/components/             # Login, Dashboard, Security, etc.
+├── docs/screenshots/               # README screenshots
+├── scripts/capture-screenshots.mjs # Regenerate screenshots
+├── start-backend.bat / .sh
+├── start-frontend.bat / .sh
+├── docker-compose.yml
 └── README.md
 ```
 
+---
+
+## For Reviewers
+
+This is a **local portfolio project** — not a deployed SaaS. Here's what is real vs. simulated:
+
+| Component | Status |
+|-----------|--------|
+| FastAPI REST + WebSocket API | Fully functional |
+| LSTM training & inference | Functional (fallback if no model) |
+| SQLite persistence | Functional |
+| React dashboard + charts | Fully functional |
+| Login / Cloud / LLM setup | Simulated UI (no real credentials sent) |
+| HITL manual actions | UI feedback only (no backend mutation) |
+| Node health grid | Static demo data |
+
+**Suggested evaluation path (≈5 min):**
+1. Clone → `start-backend.bat` + `start-frontend.bat`
+2. Login with demo credentials
+3. Click through Cloud Setup → LLM Setup → Dashboard
+4. Open `http://localhost:8000/docs` to inspect the API
+5. *(Optional)* Run `python train_model.py` in `backend/`
+
+---
+
 ## Troubleshooting
 
-### TensorFlow Import Error on Windows
-If you see `ImportError: DLL load failed`, install the Visual C++ Redistributable or use:
-```bash
-pip install tensorflow-cpu
-```
-See [TENSORFLOW_FIX.md](TENSORFLOW_FIX.md) for detailed solutions.
+| Issue | Fix |
+|-------|-----|
+| TensorFlow import error (Windows) | See [TENSORFLOW_FIX.md](TENSORFLOW_FIX.md) or recreate venv: delete `backend/venv`, rerun `start-backend.bat` |
+| Port 3000 in use | Frontend auto-tries 3001, or set `$env:PORT=3001` before `npm start` |
+| Port 8000 in use | `python -m uvicorn main:app --port 8001` |
+| Model not loading | Delete `backend/models/lstm_model.h5` and restart, or run `python train_model.py` |
+| Blank dashboard data | Ensure backend is running before opening the frontend |
 
-### Port Already in Use
-```bash
-# Windows
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
+---
 
-# Linux/Mac
-lsof -i :3000
-kill -9 <PID>
-```
+## Roadmap
 
-### Model Issues
-Delete `backend/models/lstm_model.h5` and restart to use fallback mode, or run `python train_model.py` to retrain.
-
-## Future Roadmap
-
-- [ ] Real cloud provider API integrations (AWS CloudWatch, Azure Monitor, GCP Monitoring)
-- [ ] JWT authentication with backend validation and route guards
+- [ ] Real cloud provider integrations (AWS CloudWatch, Azure Monitor, GCP)
+- [ ] JWT authentication with backend validation
 - [ ] LLM-powered natural language recommendations
 - [ ] PostgreSQL for production database
-- [ ] Anomaly detection with alerting (Slack, PagerDuty, email)
-- [ ] Reserved Instance / Savings Plan recommendations
-- [ ] Terraform/IaC integration for auto-remediation
+- [ ] Anomaly detection with Slack / PagerDuty alerts
+- [ ] Terraform / IaC auto-remediation
 - [ ] Role-based access control (RBAC)
-- [ ] Responsive mobile design
-- [ ] Audit trail and compliance reporting
-- [ ] Multi-cloud cost aggregation dashboard
+
+---
 
 ## Author
 
 **Aayush Sharma**
 
-*B.Tech Computer Science & Engineering (AI & ML)*
+*B.Tech Computer Science & Engineering (AI & ML)* — Manipal University Jaipur
 
-*Manipal University Jaipur*
+---
 
 ## License
 
-This project is open source and available under the MIT License.
+MIT License — see [LICENSE](LICENSE) for details.

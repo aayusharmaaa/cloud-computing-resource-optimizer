@@ -1,3 +1,7 @@
+# ===== ROOT / TOOLING =====
+node_modules/
+package-lock.json
+
 # ===== PYTHON / BACKEND =====
 venv/
 new_venv/
