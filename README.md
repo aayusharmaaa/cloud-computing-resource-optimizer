@@ -27,7 +27,7 @@
 
 ## Overview
 
-**Cloud Resource Optimizer** is a B2B cloud operations platform built for **enterprises and SMBs** that need to control rising infrastructure costs without compromising uptime. It uses real-time ML forecasting to predict CPU, memory, and network utilization — then recommends or automates the right scaling action before you overpay for idle capacity or under-provision during spikes.
+**Cloud Resource Optimizer** is a B2B cloud operations platform built for **enterprises and SMBs** that need to control rising infrastructure costs without compromising uptime. It uses **LSTM neural networks** for real-time ML forecasting — predicting CPU, memory, and network utilization from historical telemetry — then recommends or automates the right scaling action before you overpay for idle capacity or under-provision during spikes.
 
 Built for **DevOps, FinOps, and platform engineering teams**, the platform delivers:
 
