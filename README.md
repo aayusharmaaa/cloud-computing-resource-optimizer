@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <strong>AI-powered cloud cost optimization for enterprises and SMBs.</strong><br/>
-  Predict workload demand in real time, automate scaling decisions, and reduce cloud costs by up to 20%.
+  <strong>LSTM-powered forecasting. Human-approved scaling.</strong><br/>
+  Cut cloud costs by up to 20% — with architects in control of every decision.
 </p>
 
 
@@ -27,16 +27,9 @@
 
 ## Overview
 
-**Cloud Resource Optimizer** is a B2B cloud operations platform built for **enterprises and SMBs** that need to control rising infrastructure costs without compromising uptime. It uses **LSTM neural networks** for real-time ML forecasting — predicting CPU, memory, and network utilization from historical telemetry — then recommends or automates the right scaling action before you overpay for idle capacity or under-provision during spikes.
+**Cloud Resource Optimizer** is a B2B platform for enterprises and SMBs that uses **LSTM neural networks** to forecast CPU, memory, and network utilization in real time — surfacing scaling recommendations before costs spike or capacity runs short.
 
-Built for **DevOps, FinOps, and platform engineering teams**, the platform delivers:
-
-- **Predictive scaling** — LSTM models forecast utilization 10 steps ahead with confidence scoring
-- **Cost intelligence** — hourly, monthly, and annual spend projections with rightsizing recommendations
-- **Real-time observability** — live telemetry streams, interactive charts, and node-level health monitoring
-- **Governed automation** — human-in-the-loop controls, hard spend caps, and manual override for critical workloads
-
-This repository ships as a **fully interactive local demo** — no cloud account required. Enterprises can evaluate the product experience, API, and ML pipeline before integrating with AWS, Azure, or GCP.
+Nothing runs on autopilot. **Human-in-the-loop controls** keep architects in charge: review AI recommendations, set hard node limits, manually provision or deprovision, and halt operations when something looks wrong. ML predicts — humans decide.
 
 <p align="center">
   <img src="docs/screenshots/04-dashboard.png" alt="Operations Dashboard" width="900" />
